@@ -1,0 +1,16 @@
+ضع هذه الأسطر داخل ملف android/app/src/main/AndroidManifest.xml
+الذي يُنشأ تلقائيًا عند تنفيذ أمر "flutter create ." — لا تحتاج كتابة الملف بالكامل، فقط أضف هذه الصلاحيات
+داخل وسم <manifest> (قبل وسم <application>):
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+ملاحظة: مكتبة android_alarm_manager_plus تضيف تلقائيًا مستقبِل (Receiver) خاص بها
+لإعادة جدولة التنبيه بعد إعادة تشغيل الهاتف (Boot), لذلك لا حاجة لكتابة كود Java/Kotlin إضافي.
+
+الحد الأدنى لإصدار أندرويد (minSdkVersion) يجب أن يكون 21 على الأقل، وهذا موجود افتراضيًا
+في مشاريع Flutter الحديثة داخل android/app/build.gradle. لا حاجة لتعديله.
